@@ -9,6 +9,8 @@ public class Calculator {
         int operator2;
         String operation;
 
+
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("add first number");
