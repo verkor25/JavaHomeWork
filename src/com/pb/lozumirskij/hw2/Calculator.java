@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Calculator {
     public static void main(String[] args) {
 
-
         int operator1;
         int operator2;
         String operation;
