@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class Anagram {
 
 
-    /** in method delete punctuation marks and with space
-     * and convert all symbols to low
+    /** in method delete punctuation marks and with space and convert all symbols to low
+     * @param s input string
      */
     public String toPreparedString (String s) {
 
@@ -48,4 +48,6 @@ public class Anagram {
 
         System.out.println("is strings is anagram? " + anagram.isAnagram(firstString, secondString));
     }
+
+
 }
