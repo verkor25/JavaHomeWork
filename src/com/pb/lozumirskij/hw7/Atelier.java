@@ -3,6 +3,7 @@ package com.pb.lozumirskij.hw7;
 public class Atelier {
 
     public static void dressMan(Clothes[] clothes) {
+        System.out.println("clothes for Man");
         for (Clothes cl: clothes) {
             if (cl instanceof ManClothes) {
                 ((ManClothes) cl).dressMan();
@@ -11,6 +12,7 @@ public class Atelier {
     }
 
     public static void dressWomen(Clothes[] clothes) {
+        System.out.println("clothes for Women");
         for(Clothes cl: clothes) {
             if (cl instanceof WomenClothes) {
                 ((WomenClothes) cl).dressWomen();

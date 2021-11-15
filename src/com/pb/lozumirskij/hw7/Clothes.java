@@ -16,8 +16,7 @@ public abstract class Clothes {
         return  this.getClass().getSimpleName() + " {" +
                 "size=" + size +
                 ", cost=" + cost +
-                ", color='" + color + '\'' +
-                '}';
+                ", color='" + color + '}';
     }
 
     public enum Size {
