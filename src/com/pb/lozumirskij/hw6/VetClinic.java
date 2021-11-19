@@ -1,6 +1,7 @@
 package com.pb.lozumirskij.hw6;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class VetClinic {
 
@@ -11,13 +12,16 @@ public class VetClinic {
                             new Horse("hay", "stable", "fast")};
 
         Class cl = Class.forName("com.pb.lozumirskij.hw6.Veterinarian");
-        Object o = cl.getConstructor().newInstance();
+        Object vet = cl.getConstructor().newInstance();
+        Method treatAnimal = cl.getMethod("treatAnimal", Animal.class);
 
         for (Animal animal: animals) {
             //Veterinarian.class.newInstance().treatAnimal(animal);
-            if (o instanceof Veterinarian) {
+            treatAnimal.invoke(vet, animal);
+
+            /*if (o instanceof Veterinarian) {
                 ((Veterinarian) o).treatAnimal(animal);
-            }
+            }*/
             System.out.println("------------");
         }
     }
