@@ -1,0 +1,27 @@
+[ {
+  "fullName" : "Bill Murray",
+  "born" : [ 1982, 10, 22 ],
+  "phoneNumbers" : [ {
+    "number" : "+23(089)1234567"
+  }, {
+    "number" : "+38(022)3456789"
+  } ],
+  "address" : "Uta",
+  "modification" : [ 2021, 12, 13, 1, 9, 48, 843000000 ]
+}, {
+  "fullName" : "Chester Rodney",
+  "born" : [ 1968, 2, 14 ],
+  "phoneNumbers" : [ {
+    "number" : "+31(022)5678901"
+  }, {
+    "number" : "+12(032)6789012"
+  } ],
+  "address" : "Texas",
+  "modification" : [ 2021, 12, 13, 1, 9, 48, 901000000 ]
+}, {
+  "fullName" : "Steve White",
+  "born" : [ 1978, 8, 11 ],
+  "phoneNumbers" : [ ],
+  "address" : "Colorado",
+  "modification" : [ 2021, 12, 13, 1, 9, 48, 910000000 ]
+} ]
