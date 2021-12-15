@@ -158,7 +158,6 @@ public class PhoneBook extends ArrayList<PhoneAbonent> {
 
                 for (int j = 0; j < numbers.size(); j++) {
                     JSONObject innerObj = (JSONObject) numbers.get(j);
-                    //String number = (String) innerObj.get("number");
                     StringBuilder element = new StringBuilder((String) innerObj.get("number"));
                     phoneNumbers.add(new PhoneNumber(element.toString()));
                 }
