@@ -50,7 +50,8 @@ public class ClassDemonstrator {
 
         PhoneNumber number6 = new PhoneNumber("12", "032", "6789012");
         List<PhoneNumber> numbers4 = new ArrayList<>();
-        numbers3.add(number6);
+        numbers4.add(number6);
+        numbers4.add(number5);
 
         book.change(1, "Steve White", LocalDate.of(1978, 8, 11),
                 "Colorado", numbers4);
@@ -70,6 +71,6 @@ public class ClassDemonstrator {
         book.createJSON("phoneBook.json");
 
         System.out.println("read JSON with abonents");
-        book.readJSON("phoneBook.json");
+        System.out.println(book.readJSON("phoneBook.json"));
     }
 }

@@ -2,15 +2,20 @@ package com.pb.lozumirskij.hw11;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.deser.impl.JavaUtilCollectionsDeserializers;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.*;
 
 public class PhoneBook extends ArrayList<PhoneAbonent> {
@@ -95,7 +100,7 @@ public class PhoneBook extends ArrayList<PhoneAbonent> {
         }
     }
 
-    public void readJSON(String fileName){
+    public void readSimpleJSON(String fileName){
         File file = Paths.get(Paths.get("").toAbsolutePath() + "\\" + fileName).toFile();
         String line;
         StringBuilder builder = new StringBuilder();
@@ -113,6 +118,7 @@ public class PhoneBook extends ArrayList<PhoneAbonent> {
 
         try {
             List abonents = mapper.readValue(result, List.class);
+            System.out.println(abonents.getClass().getName());
 
             for(int i = 0; i < abonents.size(); i++) {
                 System.out.println(abonents.get(i));
@@ -122,44 +128,51 @@ public class PhoneBook extends ArrayList<PhoneAbonent> {
         }
     }
 
-    public void readFullJSON(String fileName){
+
+    public PhoneBook readJSON(String fileName){
+
+        PhoneBook book = new PhoneBook();
         File file = Paths.get(Paths.get("").toAbsolutePath() + "\\" + fileName).toFile();
-        String line;
-        StringBuilder builder = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))){
-            while((line = reader.readLine()) != null) {
-                builder.append(line);
-                builder.append("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String result =  builder.toString();
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        mapper.disable(SerializationFeature.WRITE_DATES_WITH_ZONE_ID);
-
         try {
-            List<PhoneAbonent> abonents = mapper.readValue(result, new TypeReference<List<PhoneAbonent>>() {
-                @Override
-                public Type getType() {
-                    return super.getType();
-                }
+            FileReader reader = new FileReader(file);
 
-                @Override
-                public int compareTo(TypeReference<List<PhoneAbonent>> o) {
-                    return super.compareTo(o);
-                }
+            JSONParser jsonParser = new JSONParser();
+            JSONArray jsonArray = (JSONArray)  jsonParser.parse(reader);
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                String fullName = (String) jsonObject.get("fullName");
+                JSONArray bornArr = (JSONArray) jsonObject.get("born");
+                long yearBorn = (long) bornArr.get(0);
+                long monthBorn = (long) bornArr.get(1);
+                long dayBorn = (long) bornArr.get(2);
+                LocalDate born = LocalDate.of((int) yearBorn, (int) monthBorn, (int) dayBorn);
+                String address = (String) jsonObject.get("address");
+                JSONArray modArr = (JSONArray) jsonObject.get("modification");
+                long year = (long) modArr.get(0);
+                long month = (long) modArr.get(1);
+                long day = (long) modArr.get(2);
+                long hour = (long) modArr.get(3);
+                long minute = (long) modArr.get(4);
+                long second = (long) modArr.get(5);
+                long nanoOfSecond = (long) modArr.get(6);
+                LocalDateTime modification = LocalDateTime.of((int) year, (int) month, (int) day,
+                        (int) hour, (int) minute, (int) second, (int) nanoOfSecond);
+                JSONArray numbers = (JSONArray) jsonObject.get("phoneNumbers");
+                List<PhoneNumber> phoneNumbers = new ArrayList<>();
 
-            });
-            for(int i = 0; i < abonents.size(); i++) {
-                System.out.println(abonents.get(i));
+                for (int j = 0; j < numbers.size(); j++) {
+                    JSONObject innerObj = (JSONObject) numbers.get(j);
+                    //String number = (String) innerObj.get("number");
+                    StringBuilder element = new StringBuilder((String) innerObj.get("number"));
+                    phoneNumbers.add(new PhoneNumber(element.toString()));
+                }
+                book.add(new PhoneAbonent(fullName, born, phoneNumbers,
+                        address, modification));
             }
-        } catch (JsonProcessingException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+        return book;
     }
 
 }

@@ -7,21 +7,23 @@
     "number" : "+38(022)3456789"
   } ],
   "address" : "Uta",
-  "modification" : [ 2021, 12, 13, 1, 9, 48, 843000000 ]
+  "modification" : [ 2021, 12, 15, 2, 18, 20, 922000000 ]
 }, {
   "fullName" : "Chester Rodney",
   "born" : [ 1968, 2, 14 ],
   "phoneNumbers" : [ {
     "number" : "+31(022)5678901"
-  }, {
-    "number" : "+12(032)6789012"
   } ],
   "address" : "Texas",
-  "modification" : [ 2021, 12, 13, 1, 9, 48, 901000000 ]
+  "modification" : [ 2021, 12, 15, 2, 18, 20, 979000000 ]
 }, {
   "fullName" : "Steve White",
   "born" : [ 1978, 8, 11 ],
-  "phoneNumbers" : [ ],
+  "phoneNumbers" : [ {
+    "number" : "+12(032)6789012"
+  }, {
+    "number" : "+31(022)5678901"
+  } ],
   "address" : "Colorado",
-  "modification" : [ 2021, 12, 13, 1, 9, 48, 910000000 ]
+  "modification" : [ 2021, 12, 15, 2, 18, 20, 988000000 ]
 } ]

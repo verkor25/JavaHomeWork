@@ -19,13 +19,20 @@ public class PhoneAbonent implements Serializable {
     public PhoneAbonent() {
     }
 
-
     public PhoneAbonent(String fullName, LocalDate born, List<PhoneNumber> phoneNumbers, String address) {
         this.fullName = fullName;
         this.born = born;
         this.phoneNumbers = phoneNumbers;
         this.address = address;
         this.modification = LocalDateTime.now();
+    }
+
+    public PhoneAbonent(String fullName, LocalDate born, List<PhoneNumber> phoneNumbers, String address, LocalDateTime modification) {
+        this.fullName = fullName;
+        this.born = born;
+        this.phoneNumbers = phoneNumbers;
+        this.address = address;
+        this.modification = modification;
     }
 
     @Override

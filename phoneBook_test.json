@@ -1,0 +1,11 @@
+{
+  "fullName" : "Bill Murray",
+  "born" : [ 1982, 10, 22 ],
+  "phoneNumbers" : [ {
+    "number" : "+23(089)1234567"
+  }, {
+    "number" : "+38(022)3456789"
+  } ],
+  "address" : "Uta",
+  "modification" : [ 2021, 12, 13, 1, 9, 48, 843000000 ]
+}
