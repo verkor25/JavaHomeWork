@@ -6,14 +6,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.io.*;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class PhoneBook extends ArrayList<PhoneCustomer> {
 
@@ -52,11 +50,6 @@ public class PhoneBook extends ArrayList<PhoneCustomer> {
             }
             counter++;
         }
-        /*for (int i = 0; i< this.size(); i++){
-            if(name.equals(this.get(i).getFullName())) {
-                res.add(i);
-            }
-        }*/
         if(res.size() == 0) res.add(-1);
         return res;
     }
@@ -68,14 +61,6 @@ public class PhoneBook extends ArrayList<PhoneCustomer> {
         this.clear();
         this.addAll(list);
     }
-
-    /*public void change(int element, String fullName, LocalDate born, String address, List<PhoneNumber> phoneNumbers){
-            this.get(element).setAddress(address);
-            this.get(element).setBorn(born);
-            this.get(element).setFullName(fullName);
-            this.get(element).setPhoneNumbers(phoneNumbers);
-            this.get(element).setModification(LocalDateTime.now());
-    }*/
 
     public void createJSON(String fileName){
         File file = Paths.get(Paths.get("").toAbsolutePath() + "\\" + fileName).toFile();
