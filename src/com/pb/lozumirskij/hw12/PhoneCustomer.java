@@ -1,5 +1,6 @@
 package com.pb.lozumirskij.hw12;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Objects;
 public class PhoneCustomer {
 
     private String fullName;
+    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDate born;
     private List<PhoneNumber> phoneNumbers;
     private String address;
