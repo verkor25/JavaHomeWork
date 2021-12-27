@@ -7,6 +7,7 @@ public class Consumer extends Thread {
     private final List lock;
     private final String color;
     private final int tradeVolume;
+    Producer producer;
 
     public Consumer(List lock, String color, int tradeVolume) {
         this.lock = lock;
@@ -32,6 +33,7 @@ public class Consumer extends Thread {
                     System.out.println(color + "Consumer get product " + element + " from position " + i);
                     System.out.println("--Products in repository is: " + lock.size());
                     counter++;
+                    if(counter == tradeVolume){System.exit(0);}
                     /*try {
                         Thread.sleep(2500);
                     } catch (InterruptedException e) {
@@ -39,7 +41,6 @@ public class Consumer extends Thread {
                     }*/
                 }
                 lock.notify();
-                if(counter == tradeVolume){System.exit(0);}
             }
         }
     }
