@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -66,6 +67,16 @@ public class EchoServerMulti {
             int count = 1;
             System.out.println("Start multi echo server");
             System.out.println("Wait connection");
+
+            System.out.println("If you want stop server write \"exit\"");
+            Thread stopServer = new Thread(() -> {
+                Scanner scanner = new Scanner(System.in);
+                if("exit".equalsIgnoreCase(scanner.next())){
+                    System.exit(0);
+                }
+            });
+            stopServer.start();
+
             try{
                 while (true) {
                     Socket socket = serverSocket.accept();
