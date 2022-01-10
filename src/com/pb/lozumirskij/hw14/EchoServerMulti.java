@@ -61,7 +61,6 @@ public class EchoServerMulti {
 
     public static void main(String[] args) {
         int port  = 9100;
-        int baseTreads = Thread.activeCount();
 
         try (ServerSocket serverSocket = new ServerSocket(port)){
             int count = 1;
@@ -90,8 +89,6 @@ public class EchoServerMulti {
                     System.out.println(nameClient + " connected in address: " + socket.getRemoteSocketAddress());
                     System.out.println("wait message from " + nameClient);
                     count++;
-
-                    if (Thread.activeCount() <= baseTreads) {break;}
                 }
 
             } catch (IOException e) {
