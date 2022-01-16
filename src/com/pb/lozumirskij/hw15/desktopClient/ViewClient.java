@@ -17,21 +17,16 @@ public class ViewClient {
     private JButton buttonConnect = new JButton("connect");
 
     public ViewClient(Client client) {
-
         this.client = client;
     }
 
     /**
      * initial graphical interface for users
      */
-    protected void initFrameClient() {
+    public void initFrameClient() {
         messages.setEditable(false);
         users.setEditable(false);
-        messages.setBorder(BorderFactory.createEmptyBorder());
-        messages.setBorder(BorderFactory.createTitledBorder("messages"));
         frame.add(new JScrollPane(messages), BorderLayout.CENTER);
-        users.setBorder(BorderFactory.createEmptyBorder());
-        users.setBorder(BorderFactory.createTitledBorder("users"));
         frame.add(new JScrollPane(users), BorderLayout.EAST);
         panel.add(textField);
         panel.add(buttonConnect);
@@ -57,12 +52,12 @@ public class ViewClient {
         });
     }
 
-    protected void addMessage(String text) {
+    public void addMessage(String text) {
 
         messages.append(text);
     }
 
-    protected void refreshListUsers(Set<String> listUsers) {
+    public void refreshListUsers(Set<String> listUsers) {
         users.setText("");
         if (client.isConnect()) {
             StringBuilder text = new StringBuilder("user list:\n");
@@ -73,7 +68,7 @@ public class ViewClient {
         }
     }
 
-    protected String getServerAddressFromOptionPane() {
+    public String getServerAddressFromOptionPane() {
         while (true) {
             String addressServer = JOptionPane.showInputDialog(
                     frame, "enter server address",
@@ -84,7 +79,7 @@ public class ViewClient {
         }
     }
 
-    protected int getPortServerFromOptionPane() {
+    public int getPortServerFromOptionPane() {
         while (true) {
             String port = JOptionPane.showInputDialog(
                     frame, "enter server port:",
@@ -102,15 +97,17 @@ public class ViewClient {
         }
     }
 
-    protected String getNameUser() {
-        return JOptionPane.showInputDialog(
+    public String getNameUser() {
+        String name =  JOptionPane.showInputDialog(
                 frame, "enter user name:",
                 "entering user name",
                 JOptionPane.QUESTION_MESSAGE
         );
+        frame.setTitle("chat  ---  "+name);
+        return name;
     }
 
-    protected void errorDialogWindow(String text) {
+    public void errorDialogWindow(String text) {
         JOptionPane.showMessageDialog(
                 frame, text,
                 "ERROR", JOptionPane.ERROR_MESSAGE

@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 
 
 public class ViewServer {
-    private JFrame frame = new JFrame("server start");
+    private JFrame frame = new JFrame("server");
     private JTextArea dialogWindow = new JTextArea(10, 40);
     private JButton buttonStartServer = new JButton("start server");
     private JButton buttonStopServer = new JButton("stop server");
@@ -22,7 +22,7 @@ public class ViewServer {
     /**
      * initial graphical interface for server
      */
-    protected void initFrameServer() {
+    public void initFrameServer() {
         dialogWindow.setEditable(false);
         dialogWindow.setLineWrap(true);
         frame.add(new JScrollPane(dialogWindow), BorderLayout.CENTER);
@@ -52,13 +52,14 @@ public class ViewServer {
         dialogWindow.append(serviceMessage);
     }
 
-    protected int getPortFromOptionPane() {
+    public int getPortFromOptionPane() {
         while (true) {
             String port = JOptionPane.showInputDialog(
                     frame, "enter server port:",
                     "entering the port of server",
                     JOptionPane.QUESTION_MESSAGE
             );
+            frame.setTitle("server in port: "+port);
             try {
                 return Integer.parseInt(port.trim());
             } catch (Exception e) {

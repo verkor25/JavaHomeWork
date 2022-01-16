@@ -13,12 +13,10 @@ public class Client {
     private volatile boolean isConnect = false;
 
     public boolean isConnect() {
-
         return isConnect;
     }
 
     public void setConnect(boolean connect) {
-
         isConnect = connect;
     }
 
@@ -42,7 +40,7 @@ public class Client {
     /***
      * connect user to server
      */
-    protected void serverConnect() {
+    public void serverConnect() {
         if (!isConnect) {
             while (true) {
                 try {
@@ -64,7 +62,7 @@ public class Client {
     /**
      * registration user name
      */
-    protected void userRegistration() {
+    public void userRegistration() {
         while (true) {
             try {
                 Message message = connection.receive();
@@ -101,7 +99,7 @@ public class Client {
      * send message to another users
      * @param text is message from user to another users
      */
-    protected void sendMessage(String text) {
+    public void sendMessage(String text) {
         try {
             connection.send(new Message(MessageType.TEXT_MESSAGE, text));
         } catch (Exception e) {
@@ -112,7 +110,7 @@ public class Client {
     /**
      * receiving messages from the server and other users
      */
-    protected void receiveMessage() {
+    public void receiveMessage() {
         while (isConnect) {
             try {
                 Message message = connection.receive();
@@ -142,7 +140,7 @@ public class Client {
     /**
      * disconnect user from chat
      */
-    protected void disableClient() {
+    public void disableClient() {
         try {
             if (isConnect) {
                 connection.send(new Message(MessageType.DISABLE_USER));

@@ -10,17 +10,17 @@ public class ModelServer {
     private Map<String, Connection> allUsers = new HashMap<>();
 
 
-    protected Map<String, Connection> getAllUsers() {
+    public Map<String, Connection> getAllUsers() {
 
         return allUsers;
     }
 
-    protected void addUser(String nameUser, Connection connection) {
+    public void addUser(String nameUser, Connection connection) {
 
         allUsers.put(nameUser, connection);
     }
 
-    protected void removeUser(String nameUser) {
+    public void removeUser(String nameUser) {
 
         allUsers.remove(nameUser);
     }

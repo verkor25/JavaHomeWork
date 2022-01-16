@@ -19,7 +19,7 @@ public class Server {
      * server start
      * @param port server start port
      */
-    protected void startServer(int port) {
+    public void startServer(int port) {
         try {
             serverSocket = new ServerSocket(port);
             isServerStart = true;
@@ -32,7 +32,7 @@ public class Server {
     /**
      * server stop
      */
-    protected void stopServer() {
+    public void stopServer() {
         try {
             if (serverSocket != null && !serverSocket.isClosed()) {
                 for (Map.Entry<String, Connection> user : model.getAllUsers().entrySet()) {
@@ -50,7 +50,7 @@ public class Server {
     /**
      * accepts new connection from users
      */
-    protected void acceptServer() {
+    public void acceptServer() {
         while (true) {
             try {
                 Socket socket = serverSocket.accept();
@@ -66,7 +66,7 @@ public class Server {
      * send message to all users
      * @param message
      */
-    protected void sendMessageAllUsers(Message message) {
+    public void sendMessageAllUsers(Message message) {
         for (Map.Entry<String, Connection> user : model.getAllUsers().entrySet()) {
             try {
                 user.getValue().send(message);
@@ -108,7 +108,7 @@ public class Server {
          * @param connection
          * @return
          */
-        private String requestAndAddingUser(Connection connection) {
+        public String requestAndAddingUser(Connection connection) {
             while (true) {
                 try {
                     connection.send(new Message(MessageType.REQUEST_NAME_USER));
@@ -137,7 +137,7 @@ public class Server {
          * @param connection
          * @param userName
          */
-        private void messagingBetweenUsers(Connection connection, String userName) {
+        public void messagingBetweenUsers(Connection connection, String userName) {
             while (true) {
                 try {
                     Message message = connection.receive();
